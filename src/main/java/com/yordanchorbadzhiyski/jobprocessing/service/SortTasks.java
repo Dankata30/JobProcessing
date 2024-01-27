@@ -1,13 +1,13 @@
-package com.yordanchorbadzhiyski.jobprocessing.utils;
+package com.yordanchorbadzhiyski.jobprocessing.service;
 
 import com.yordanchorbadzhiyski.jobprocessing.model.Task;
 
 import java.util.*;
 
-public class DAG {
+public class SortTasks {
     private Map<Integer, Task> taskMap;
 
-    public DAG() {
+    public SortTasks() {
         this.taskMap = new HashMap<>();
     }
 
