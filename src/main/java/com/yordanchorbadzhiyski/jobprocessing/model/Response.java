@@ -2,13 +2,17 @@ package com.yordanchorbadzhiyski.jobprocessing.model;
 
 
 public class Response {
-    private String resp;
+    private String message;
 
-    public Response(String resp){
-        this.resp = resp;
+    public Response(String message) {
+        this.message = message;
     }
 
-    public String getResp() {
-        return this.resp;
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

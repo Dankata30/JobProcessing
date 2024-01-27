@@ -1,5 +1,7 @@
 package com.yordanchorbadzhiyski.jobprocessing.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +30,7 @@ public class Task {
         this.command = command;
     }
 
+
     public List<Integer> getRequires() {
         return requires;
     }
@@ -51,6 +54,7 @@ public class Task {
     public int extractId(String taskName){
         return Integer.parseInt(taskName.substring(taskName.indexOf("-") + 1));
     }
+
 
     public List<Task> getDependencies(){
         return dependencies;
