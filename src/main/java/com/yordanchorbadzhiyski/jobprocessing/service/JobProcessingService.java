@@ -5,39 +5,69 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+import java.util.*;
+
+/**
+ * Service class responsible for processing tasks, building a Directed Acyclic Graph (DAG)
+ * based on task dependencies, performing topological sorting, and checking for circular dependencies.
+ * It uses a map to store tasks, where the key is the task ID.
+ *
+ * The service provides methods to add tasks, build a DAG, perform topological sorting,
+ * check for circular dependencies, and clear the task map.
+ *
+ * @author Yordan Chorbadzhiyski
+ * @version 1.0
+ * @since 2024-01-23
+ */
 @Service
 public class JobProcessingService {
+
     private Map<Integer, Task> taskMap;
 
+    /**
+     * Constructs a new JobProcessingService with an empty task map.
+     */
     public JobProcessingService() {
         this.taskMap = new HashMap<>();
     }
 
+    /**
+     * Gets the task map.
+     *
+     * @return The task map.
+     */
     public Map<Integer, Task> getTaskMap() {
         return taskMap;
     }
 
+    /**
+     * Adds a task to the task map and initializes its dependencies.
+     *
+     * @param task The task to be added.
+     */
     public void addTask(Task task) {
         task.setDependencies();
         taskMap.put(task.getId(), task);
     }
 
+    /**
+     * Builds a Directed Acyclic Graph (DAG) based on the provided list of tasks.
+     * Initializes dependencies for each task.
+     *
+     * @param tasks The list of tasks.
+     */
     public void buildDAG(List<Task> tasks) {
-        for (Task task : tasks)
-        {
+        for (Task task : tasks) {
             addTask(task);
         }
 
         for (Task task : tasks) {
             List<Integer> requiresIds = task.getRequires();
 
-            if (requiresIds != null)
-            {
-                for (Integer requiresId : requiresIds)
-                {
+            if (requiresIds != null) {
+                for (Integer requiresId : requiresIds) {
                     Task requiredTask = taskMap.get(requiresId);
-                    if (requiredTask != null)
-                    {
+                    if (requiredTask != null) {
                         requiredTask.addDependency(task);
                     }
                 }
@@ -45,6 +75,11 @@ public class JobProcessingService {
         }
     }
 
+    /**
+     * Performs topological sorting on the DAG and returns the sorted list of tasks.
+     *
+     * @return The list of tasks in topologically sorted order.
+     */
     public List<Task> topologicalSort() {
         Stack<Task> stack = new Stack<>();
         Map<Integer, Boolean> visited = new HashMap<>();
@@ -83,7 +118,11 @@ public class JobProcessingService {
         stack.push(task);
     }
 
-//    ------------------------------ Checks if there are any problems with cycles
+    /**
+     * Checks if circular dependencies are present in the DAG.
+     *
+     * @return True if circular dependencies are present, false otherwise.
+     */
     public boolean hasCycle() {
         Map<Integer, Boolean> visited = new HashMap<>();
         Map<Integer, Boolean> recursionStack = new HashMap<>();
@@ -124,7 +163,11 @@ public class JobProcessingService {
         return false;
     }
 
+    /**
+     * Clears the task map, removing all tasks.
+     */
     public void clear() {
         this.taskMap = new HashMap<>();
     }
 }
+

@@ -89,11 +89,10 @@ public class JobProcessingControllerTest {
         doNothing().when(service).buildDAG(any());
         doReturn(true).when(service).hasCycle();
 
-        // Perform the POST request
         mockMvc.perform(post("/process")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(asJsonString(requestObj)))
-                .andExpect(status().isBadRequest())  // Expect a 400 Bad Request status
+                .andExpect(status().isBadRequest())
                 .andExpect(content().contentType(MediaType.valueOf("text/plain;charset=UTF-8")))
                 .andExpect(content().string("DATA ERROR: The list of tasks cannot be performed in any order due to circular dependency"));
     }
@@ -105,11 +104,10 @@ public class JobProcessingControllerTest {
         doNothing().when(service).buildDAG(any());
         doReturn(false).when(service).hasCycle();
 
-        // Perform the POST request
         mockMvc.perform(post("/process")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(asJsonString(badRequest)))
-                .andExpect(status().isBadRequest())  // Expect a 400 Bad Request status
+                .andExpect(status().isBadRequest())
                 .andExpect(content().contentType(MediaType.valueOf("text/plain;charset=UTF-8")))
                 .andExpect(content().string("An error occurred: class org.springframework.http.converter.HttpMessageNotReadableException"));
     }
