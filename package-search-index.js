@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.yordanchorbadzhiyski.jobprocessing"},{"l":"com.yordanchorbadzhiyski.jobprocessing.controller"},{"l":"com.yordanchorbadzhiyski.jobprocessing.exceptions"},{"l":"com.yordanchorbadzhiyski.jobprocessing.model"},{"l":"com.yordanchorbadzhiyski.jobprocessing.service"}];updateSearchResults();
