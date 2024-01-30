@@ -13,6 +13,17 @@ public class Task {
 
     private List<Task> dependencies;
 
+    public Task(){
+
+    }
+
+    public Task(int id, String name, String command, List<Integer> requires){
+        this.id = id;
+        this.name = name;
+        this.command = command;
+        this.requires = requires;
+    }
+
     public String getName() {
         return name;
     }

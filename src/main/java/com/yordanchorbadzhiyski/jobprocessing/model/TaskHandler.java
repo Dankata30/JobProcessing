@@ -6,6 +6,14 @@ public class TaskHandler {
 
     private List<Task> tasks;
 
+    public TaskHandler(){
+
+    }
+
+    public TaskHandler(List<Task> tasks){
+        this.tasks = tasks;
+    }
+
     public List<Task> getTasks() {
         return tasks;
     }

@@ -1,13 +1,15 @@
 package com.yordanchorbadzhiyski.jobprocessing.service;
 
 import com.yordanchorbadzhiyski.jobprocessing.model.Task;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
-public class SortTasks {
+@Service
+public class JobProcessingService {
     private Map<Integer, Task> taskMap;
 
-    public SortTasks() {
+    public JobProcessingService() {
         this.taskMap = new HashMap<>();
     }
 
