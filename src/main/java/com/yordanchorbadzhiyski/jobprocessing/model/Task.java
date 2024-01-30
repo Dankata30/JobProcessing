@@ -14,7 +14,6 @@ public class Task {
     private List<Task> dependencies;
 
     public Task(){
-
     }
 
     public Task(int id, String name, String command, List<Integer> requires){

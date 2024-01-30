@@ -13,6 +13,10 @@ public class JobProcessingService {
         this.taskMap = new HashMap<>();
     }
 
+    public Map<Integer, Task> getTaskMap() {
+        return taskMap;
+    }
+
     public void addTask(Task task) {
         task.setDependencies();
         taskMap.put(task.getId(), task);
@@ -38,22 +42,6 @@ public class JobProcessingService {
                     }
                 }
             }
-        }
-    }
-
-    // Example method to print the DAG
-    public void printDAG() {
-        for (Task task : taskMap.values()) {
-            System.out.println("Task: " + task.getName() + " (ID: " + task.getId() + ")");
-            System.out.println("Command: " + task.getCommand());
-            List<Task> children = task.getDependencies();
-            if (!children.isEmpty()) {
-                System.out.println("Requires:");
-                for (Task child : children) {
-                    System.out.println("  - " + child.getName() + " (ID: " + child.getId() + ")");
-                }
-            }
-            System.out.println();
         }
     }
 
@@ -136,4 +124,7 @@ public class JobProcessingService {
         return false;
     }
 
+    public void clear() {
+        this.taskMap = new HashMap<>();
+    }
 }
