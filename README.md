@@ -27,3 +27,6 @@ To run the application, follow the steps below:
 4. To run tests please use
    ```bash
    mvn test
+   
+### Checking the API
+You can check the Swagger for the API at: http://localhost:8080/swagger-ui/index.html
